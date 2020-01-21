@@ -1,0 +1,37 @@
+// this is the accessory feature of our smart vehicle that is to have an inbuilt 
+// sonar system for ease in navigation and also some other charecteristics like
+// remote control through IR of phone and some other features
+
+
+
+int trigpin=9;
+int echopin=10;
+int led=7;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  pinMode(trigpin,OUTPUT);
+  pinMode(echopin, INPUT);
+
+}
+
+void loop() 
+{
+  long duration, distance;
+  long xpos, ypos;
+  digitalWrite(trigpin, HIGH);
+  delayMicroseconds(1000);
+  digitalWrite(trigpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=(duration/2)/29.1;
+  Serial.print(distance);
+  Serial.println('Centimeter');
+  delay(10);
+  xpos= distance*cos(angle); // for ++ plane, opposite for -+plane
+  ypos= distance*sin(angle);
+  Serisl.print("X= "xpos+"centimetres; Y= "+ypos+"centimetres");
+  
+
+}
